@@ -1,19 +1,9 @@
-﻿# TC-Baldr's Levelling List
+# Nightwatch War Timers
 
-A Tool that displays targets status from baldr's basic advice for [Torn City](https://torn.com/1778676)
+This is an edited fork of the commonly used [Baldr's levelling list](https://github.com/OranWeb/tc-baldrs-levelling-list) used for faction wars.
 
-[https://oran.pw/baldrstargets](https://oran.pw/baldrstargets)
+This fork is maintained and edited by:
+[smeggbenedict](https://www.torn.com/profiles.php?XID=3392714)
 
-Join our Discord [Here](https://discord.gg/JrBpEsQB5g)
-
-### Deployment
-
-While we recommend deployment to Netlify, Cloudflare Pages / Vercel or any static web host should do the trick.
-
-## Contributing to TC-Baldrs-levelling-list
-
-Pull requests of code changes or text additions are always welcome.
-
-## Usage/sharing
-
-do whatever you want!
+And is hosted on netlify [link](https://nightwatchtorn.netlify.app/)
+ 
