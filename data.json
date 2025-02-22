@@ -1,304 +1,334 @@
 {
-  "44594 (Warsluts)": [
-    {
-      "name": "937John_S",
-      "id": 1859996,
-      "lvl": 79,
-      "total": 753096448,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "NutPunch",
-      "id": 2303736,
-      "lvl": 100,
-      "total": 1341525570,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "-Bash-",
-      "id": 2674774,
-      "lvl": 32,
-      "total": 251865,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "GutPunch",
-      "id": 2754239,
-      "lvl": 88,
-      "total": 1103693914,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "ButPunch",
-      "id": 2754282,
-      "lvl": 77,
-      "total": 1154645441,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "-Yello-",
-      "id": 2807015,
-      "lvl": 75,
-      "total": 907164975,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "BrianBourne",
-      "id": 2811233,
-      "lvl": 66,
-      "total": 38950840,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "Lord_Ace",
-      "id": 2933827,
-      "lvl": 32,
-      "total": 230440,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "Mike_Oak",
-      "id": 2958922,
-      "lvl": 42,
-      "total": 43530891,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "Moe_Lester",
-      "id": 3014462,
-      "lvl": 32,
-      "total": 5366100,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "babozo",
-      "id": 3286059,
-      "lvl": 30,
-      "total": 717222,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "Narrator_",
-      "id": 3360825,
-      "lvl": 34,
-      "total": 688355,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "0__a",
-      "id": 3372913,
-      "lvl": 31,
-      "total": 1197499,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "The_G_Man",
-      "id": 3381340,
-      "lvl": 20,
-      "total": 56442,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "Ghxstie",
-      "id": 3447555,
-      "lvl": 19,
-      "total": 48501,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "devilcoy",
-      "id": 3450528,
-      "lvl": 26,
-      "total": 449347,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "3453748",
-      "id": 3453748,
-      "lvl": 28,
-      "total": 866115,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "ktorin",
-      "id": 3455361,
-      "lvl": 30,
-      "total": 430500,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "_kev",
-      "id": 3456187,
-      "lvl": 26,
-      "total": 250340,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "tooomas",
-      "id": 3456333,
-      "lvl": 28,
-      "total": 408596,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "Killme566",
-      "id": 3456515,
-      "lvl": 24,
-      "total": 194086,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "White_Rabbit42",
-      "id": 3457040,
-      "lvl": 27,
-      "total": 202592,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "Ayrik",
-      "id": 3457475,
-      "lvl": 26,
-      "total": 227310,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "Dresstoimpress",
-      "id": 3460736,
-      "lvl": 24,
-      "total": 42236,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "BlueDreamBot",
-      "id": 3467429,
-      "lvl": 30,
-      "total": 482596,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "DS_KIDX",
-      "id": 3471483,
-      "lvl": 22,
-      "total": 42740,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "Lying_bob",
-      "id": 3489995,
-      "lvl": 16,
-      "total": 123424,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "Rayven91",
-      "id": 3497004,
-      "lvl": 27,
-      "total": 122595,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "shiftyjack",
-      "id": 3532386,
-      "lvl": 20,
-      "total": 26698,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    },
-    {
-      "name": "pachk0",
-      "id": 3544075,
-      "lvl": 18,
-      "total": 132013,
-      "str": "",
-      "def": "",
-      "spd": "",
-      "dex": ""
-    }
-  ]
+    "The WarSluts": [
+        {
+            "name": "937John_S",
+            "id": "1859996",
+            "lvl": "79",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "753096448"
+        },
+        {
+            "name": "NutPunch",
+            "id": "2303736",
+            "lvl": "100",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "1341525570"
+        },
+        {
+            "name": "-Bash-",
+            "id": "2674774",
+            "lvl": "32",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "251865"
+        },
+        {
+            "name": "GutPunch",
+            "id": "2754239",
+            "lvl": "88",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "1103693914"
+        },
+        {
+            "name": "ButPunch",
+            "id": "2754282",
+            "lvl": "77",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "524036330"
+        },
+        {
+            "name": "-Yello-",
+            "id": "2807015",
+            "lvl": "75",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "907164975"
+        },
+        {
+            "name": "BrianBourne",
+            "id": "2811233",
+            "lvl": "66",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "38950840"
+        },
+        {
+            "name": "Lord_Ace",
+            "id": "2933827",
+            "lvl": "32",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "230440"
+        },
+        {
+            "name": "Mike_Oak",
+            "id": "2958922",
+            "lvl": "42",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "43530891"
+        },
+        {
+            "name": "Moe_Lester",
+            "id": "3014462",
+            "lvl": "32",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "5366100"
+        },
+        {
+            "name": "babozo",
+            "id": "3286059",
+            "lvl": "30",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "717222"
+        },
+        {
+            "name": "Narrator_",
+            "id": "3360825",
+            "lvl": "34",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "688355"
+        },
+        {
+            "name": "0__a",
+            "id": "3372913",
+            "lvl": "31",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "1197499"
+        },
+        {
+            "name": "The_G_Man",
+            "id": "3381340",
+            "lvl": "20",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "56442"
+        },
+        {
+            "name": "Ghxstie",
+            "id": "3447555",
+            "lvl": "19",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "48501"
+        },
+        {
+            "name": "devilcoy",
+            "id": "3450528",
+            "lvl": "26",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "449347"
+        },
+        {
+            "name": "3453748",
+            "id": "3453748",
+            "lvl": "28",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "866115"
+        },
+        {
+            "name": "ktorin",
+            "id": "3455361",
+            "lvl": "30",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "430500"
+        },
+        {
+            "name": "_kev",
+            "id": "3456187",
+            "lvl": "26",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "250340"
+        },
+        {
+            "name": "tooomas",
+            "id": "3456333",
+            "lvl": "28",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "408596"
+        },
+        {
+            "name": "Killme566",
+            "id": "3456515",
+            "lvl": "24",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "194086"
+        },
+        {
+            "name": "White_Rabbit42",
+            "id": "3457040",
+            "lvl": "27",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "202592"
+        },
+        {
+            "name": "Ayrik",
+            "id": "3457475",
+            "lvl": "26",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "227310"
+        },
+        {
+            "name": "Dresstoimpress",
+            "id": "3460736",
+            "lvl": "24",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "42236"
+        },
+        {
+            "name": "BlueDreamBot",
+            "id": "3467429",
+            "lvl": "30",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "482596"
+        },
+        {
+            "name": "DS_KIDX",
+            "id": "3471483",
+            "lvl": "22",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "42740"
+        },
+        {
+            "name": "Lying_bob",
+            "id": "3489995",
+            "lvl": "16",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "123424"
+        },
+        {
+            "name": "Rayven91",
+            "id": "3497004",
+            "lvl": "27",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "122595"
+        },
+        {
+            "name": "shiftyjack",
+            "id": "3532386",
+            "lvl": "20",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "26698"
+        },
+        {
+            "name": "pachk0",
+            "id": "3544075",
+            "lvl": "18",
+            "total": "",
+            "str": "",
+            "def": "",
+            "spd": "",
+            "dex": "",
+            "BSP_total": "132013"
+        }
+    ]
 }
