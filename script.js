@@ -51,7 +51,7 @@ async function fetchData() {
     }
 
     const userPromises = tableData.map(async (row) => {
-      const apiUrl = https://api.torn.com/user/${row.id}?selections=basic&key=${apiKey};
+      const apiUrl = `https://api.torn.com/user/${row.id}?selections=basic&key=${apiKey}`;
       try {
         const userResponse = await fetch(apiUrl);
         const userData = await userResponse.json();
@@ -107,7 +107,7 @@ function startCountdown() {
       fetchButton.textContent = "Fetch";
       fetchButton.disabled = false;
     } else {
-      fetchButton.textContent = Fetch (${remainingTime}s);
+      fetchButton.textContent = `Fetch (${remainingTime}s)`;
     }
   }, 1000);
 }
@@ -149,7 +149,7 @@ function formatStatus(status) {
     const remaining = status.until - Date.now() / 1000;
     const minutes = Math.floor(remaining / 60);
     const seconds = Math.floor(remaining % 60);
-    formattedStatus = Hospitalized (${minutes}m ${seconds}s);
+    formattedStatus = `Hospitalized (${minutes}m ${seconds}s)`;
   } 
   else if (formattedStatus === "Abroad" || formattedStatus === "Traveling") {
     formattedStatus = status.description || formattedStatus; // Fallback to state if description is missing
@@ -174,7 +174,7 @@ function updateStatus() {
     } else {
       const updatedMinutes = Math.floor(updatedRemaining / 60);
       const updatedSeconds = updatedRemaining % 60;
-      statusCell.textContent = Hospitalized (${updatedMinutes}m ${updatedSeconds}s);
+      statusCell.textContent = `Hospitalized (${updatedMinutes}m ${updatedSeconds}s)`;
     }
   });
 }
@@ -241,7 +241,7 @@ function createAttackLink(id, status) {
   const disabledClass = isDisabled ? "cursor-not-allowed opacity-30 hover:bg-white" : "hover:bg-gray-50";
   const onClick = isDisabled ? "event.preventDefault();" : "";
 
-  return <a target="_blank" href="https://www.torn.com/loader2.php?sid=getInAttack&user2ID=${id}" class="inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 ${disabledClass}" onclick="${onClick}">Attack</a>;
+  return `<a target="_blank" href="https://www.torn.com/loader2.php?sid=getInAttack&user2ID=${id}" class="inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 ${disabledClass}" onclick="${onClick}">Attack</a>`;
 }
 
 function populateAPIKey() {
@@ -253,7 +253,7 @@ function populateAPIKey() {
 }
 
 function createCard(row, status, attackLink) {
-  return 
+  return `
     <div class="card mb-4 border border-gray-200 p-4 rounded-lg shadow-sm">
       <div class="text-sm sm:hidden">
         <div class="font-medium text-gray-900 dark:text-gray-300">
@@ -273,14 +273,14 @@ function createCard(row, status, attackLink) {
         </div>
       </div>
     </div>
-  ;
+  `;
 }
 
 function createTableRow(row, status, attackLink, index) {
   const isNotFirst = index > 0;
   const borderClass = isNotFirst ? 'border-t border-gray-200' : '';
 
-  return 
+  return `
     <tr>
       <td class="relative py-4 pl-4 pr-3 text-sm sm:pl-6 min-w-0 ${borderClass}">
         <div class="font-medium text-gray-900 dark:text-gray-300">
@@ -305,7 +305,7 @@ function createTableRow(row, status, attackLink, index) {
         ${attackLink}
       </td>
     </tr>
-  ;
+  `;
 }
 
 // Function to render the appropriate layout based on screen size
