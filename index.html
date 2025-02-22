@@ -21,15 +21,14 @@
         .spin {
             animation: spin 1s linear infinite;
         }
-		 
-</style>
+    </style>
 
-<script>
-    if (localStorage.getItem('dark') === 'true' || localStorage.getItem('dark') === null) {
-        document.documentElement.classList.add('dark'); // Force dark mode on page load
-        localStorage.setItem('dark', 'true'); // Ensure it stays enabled
-    }
-</script>
+    <script>
+        if (localStorage.getItem('dark') === 'true' || localStorage.getItem('dark') === null) {
+            document.documentElement.classList.add('dark'); // Force dark mode on page load
+            localStorage.setItem('dark', 'true'); // Ensure it stays enabled
+        }
+    </script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"></script>
     <script src="script.js?v=1.36"></script>
 </head>
@@ -45,8 +44,8 @@
                     <h3 class="text-base font-medium tracking-wider">
                         <div class="max-w-2xl mx-auto">
                             <p>
-				    Refreshable list of timers for war targets, sorted by estimated battle stats of opposing faction.
-				    Any issues message Smegg on discord.
+                                Refreshable list of timers for war targets, sorted by estimated battle stats of opposing faction.
+                                Any issues message Smegg on discord.
                             </p>
                         </div>
                     </h3>
@@ -78,7 +77,7 @@
                         <div id="loading-indicator" class="fixed inset-0 flex items-center justify-center hidden">
                             <div class="w-16 h-16 border-t-4 border-blue-600 border-solid rounded-full spin"></div>
                         </div>
-					
+                    
                         <div id="data-table" class="py-4 px-4 sm:px-6 lg:px-8 text-left hidden" data-view="cards">
                             <div class="-mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
                                 <div class="table-container overflow-x-auto w-full">
@@ -88,17 +87,14 @@
                                                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 sm:pl-6">Player</th>
                                                 <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 lg:table-cell">Level</th>
                                                 <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 lg:table-cell">BSP Total</th>
-                                                <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 lg:table-cell">Strength</th>
-                                                <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 lg:table-cell">Defense</th>
-                                                <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 lg:table-cell">Speed</th>
-                                                <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 lg:table-cell">Dexterity</th>
+                                                <!-- Removed Strength, Defense, Speed, Dexterity -->
                                                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300">Status</th>
                                                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"></th>
-																													   
                                             </tr>
                                         </thead>
-                                        <tbody id="table-body"></tbody>
-											
+                                        <tbody id="table-body">
+                                            <!-- Rows will go here -->
+                                        </tbody>
                                     </table>
                                     <p id="no-data-message" class="hidden px-3 py-3.5 text-sm text-gray-400 border-t border-gray-200">
                                         No data available.
@@ -108,103 +104,97 @@
                         </div>
                     </div>
                     <script>
-		 
-// Function to parse numbers with optional abbreviations (e.g., 10k, 10M, 1000)
-function parseAbbreviatedNumber(value) {
-    const regex = /^(\d+(?:\.\d+)?)([kKmMbB]?)$/; // Matches numbers with optional units (k, M, B)
-    const match = value.match(regex);
-    if (!match) return NaN; // Invalid input
+                        // Function to parse numbers with optional abbreviations (e.g., 10k, 10M, 1000)
+                        function parseAbbreviatedNumber(value) {
+                            const regex = /^(\d+(?:\.\d+)?)([kKmMbB]?)$/; // Matches numbers with optional units (k, M, B)
+                            const match = value.match(regex);
+                            if (!match) return NaN; // Invalid input
 
-    const number = parseFloat(match[1]); // The numeric part
-    const unit = match[2].toLowerCase(); // The unit (k, m, b)
+                            const number = parseFloat(match[1]); // The numeric part
+                            const unit = match[2].toLowerCase(); // The unit (k, m, b)
 
-    // Convert based on the unit
-    switch (unit) {
-        case "k":
-            return number * 1_000;
-        case "m":
-            return number * 1_000_000;
-        case "b":
-            return number * 1_000_000_000;
-        default:
-            return number; // No unit means it's a plain number
-    }
-}
+                            // Convert based on the unit
+                            switch (unit) {
+                                case "k":
+                                    return number * 1_000;
+                                case "m":
+                                    return number * 1_000_000;
+                                case "b":
+                                    return number * 1_000_000_000;
+                                default:
+                                    return number; // No unit means it's a plain number
+                            }
+                        }
 
-// Function to extract numerical values from text, including formatted numbers
-function extractNumericValue(element) {
-    if (!element) return NaN;
-    const text = element.textContent.trim();
-    const numericPart = text.split(' - ')[0].replace(/[^0-9.]/g, ""); // Remove non-numeric characters except dots
-    return parseFloat(numericPart.replace(/,/g, '')); // Remove commas and parse number
-}
+                        // Function to extract numerical values from text, including formatted numbers
+                        function extractNumericValue(element) {
+                            if (!element) return NaN;
+                            const text = element.textContent.trim();
+                            const numericPart = text.split(' - ')[0].replace(/[^0-9.]/g, ""); // Remove non-numeric characters except dots
+                            return parseFloat(numericPart.replace(/,/g, '')); // Remove commas and parse number
+                        }
 
-// Attach event listener to the input
-document.getElementById("filter-input").addEventListener("input", function() {
-    const filterValue = this.value.trim(); // Get the input value
-    const parsedValue = parseAbbreviatedNumber(filterValue); // Parse the value
-    const dataTable = document.querySelector("#data-table");
-    const tableBody = dataTable.querySelector("#table-body");
-    const rows = tableBody ? tableBody.querySelectorAll("tr") : [];
-    const cardContainer = document.getElementById("cards-container");
-    const cards = cardContainer ? cardContainer.querySelectorAll(".card") : [];
-    let visible = false;
+                        // Attach event listener to the input
+                        document.getElementById("filter-input").addEventListener("input", function() {
+                            const filterValue = this.value.trim(); // Get the input value
+                            const parsedValue = parseAbbreviatedNumber(filterValue); // Parse the value
+                            const dataTable = document.querySelector("#data-table");
+                            const tableBody = dataTable.querySelector("#table-body");
+                            const rows = tableBody ? tableBody.querySelectorAll("tr") : [];
+                            const cardContainer = document.getElementById("cards-container");
+                            const cards = cardContainer ? cardContainer.querySelectorAll(".card") : [];
+                            let visible = false;
 
-    console.log("Filter value:", filterValue);
-    console.log("Parsed value:", parsedValue);
+                            console.log("Filter value:", filterValue);
+                            console.log("Parsed value:", parsedValue);
 
-    // Apply filter to cards
-    cards.forEach((card) => {
-        const bspTotal = extractNumericValue(card.querySelector(".bsp-total")); // Extract BSP Total value
-        const total = extractNumericValue(card.querySelector(".total")); // Extract Total value
+                            // Apply filter to cards
+                            cards.forEach((card) => {
+                                const bspTotal = extractNumericValue(card.querySelector(".bsp-total")); // Extract BSP Total value
+                                const total = extractNumericValue(card.querySelector(".total")); // Extract Total value
 
-        console.log("Card BSP Total:", bspTotal);
-        console.log("Card Total:", total);
+                                console.log("Card BSP Total:", bspTotal);
+                                console.log("Card Total:", total);
 
-        if (filterValue === "" || (!isNaN(parsedValue) && (bspTotal <= parsedValue))) {
-            card.style.display = ""; // Show the card
-            visible = true;
-            console.log("Card visible:", card);
-        } else {
-            card.style.display = "none"; // Hide the card
-        }
-    });
+                                if (filterValue === "" || (!isNaN(parsedValue) && (bspTotal <= parsedValue))) {
+                                    card.style.display = ""; // Show the card
+                                    visible = true;
+                                    console.log("Card visible:", card);
+                                } else {
+                                    card.style.display = "none"; // Hide the card
+                                }
+                            });
 
-    // Apply filter to table rows
-    rows.forEach((row) => {
-        const bspTotal = extractNumericValue(row.children[2]); // BSP Total column
-        const total = extractNumericValue(row.children[3]); // Total column
+                            // Apply filter to table rows
+                            rows.forEach((row) => {
+                                const bspTotal = extractNumericValue(row.children[2]); // BSP Total column
+                                const total = extractNumericValue(row.children[3]); // Total column
 
-        // If the filter is empty, show all rows. Otherwise, apply the filter.
-        if (filterValue === "" || (!isNaN(parsedValue) && (bspTotal <= parsedValue))) {
-            row.style.display = ""; // Show the row
-            visible = true;
-        } else {
-            row.style.display = "none"; // Hide the row
-        }
-    });
+                                // If the filter is empty, show all rows. Otherwise, apply the filter.
+                                if (filterValue === "" || (!isNaN(parsedValue) && (bspTotal <= parsedValue))) {
+                                    row.style.display = ""; // Show the row
+                                    visible = true;
+                                } else {
+                                    row.style.display = "none"; // Hide the row
+                                }
+                            });
 
-    console.log("Visible:", visible);
+                            console.log("Visible:", visible);
 
-    // Toggle the "no data available" message
-    const noDataMessage = document.getElementById("no-data-message");
-    if (noDataMessage) {
-        noDataMessage.classList.toggle("hidden", visible);
-        console.log("No data message visibility:", !visible);
-    }
-});
-
-
+                            // Toggle the "no data available" message
+                            const noDataMessage = document.getElementById("no-data-message");
+                            if (noDataMessage) {
+                                noDataMessage.classList.toggle("hidden", visible);
+                                console.log("No data message visibility:", !visible);
+                            }
+                        });
                     </script>
                 </div>
             </div>
         </div>
-		  
-
         <div class="footer mt-auto px-4 sm:px-6 lg:px-8 text-center">
         </div>
     </div>
-		  
 </body>
 
 </html>
