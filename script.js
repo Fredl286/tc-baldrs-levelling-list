@@ -36,16 +36,14 @@ async function fetchData() {
   fetchButton.disabled = true;
   startCountdown();
 
-  const tableBody = document.getElementById("table-body");
-  tableBody.innerHTML = "";
-
   showLoadingIndicator();
   hideDataTable();
 
   try {
     const response = await fetch("data.json");
     const data = await response.json();
-    tableData = data[selectedList];
+    const tableData = data[selectedList];
+
     if (tableData.length === 0) {
       displayNoDataMessage();
       hideLoadingIndicator();
@@ -60,28 +58,24 @@ async function fetchData() {
         const status = formatStatus(userData.status);
         return { ...row, status };
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching user data:", error);
       }
     });
 
     const usersWithStatus = await Promise.all(userPromises);
 
+    // Sorting users
     const sortedUsers = usersWithStatus.sort((a, b) => {
-      if (a.status === "Okay" && b.status !== "Okay") return -1;
-      if (a.status !== "Okay" && b.status === "Okay") return 1;
-      if (a.status === "Okay" && b.status === "Okay") return 0;
-
-      const aRemaining = parseHospitalTime(a.status);
-      const bRemaining = parseHospitalTime(b.status);
-
-      return aRemaining - bRemaining;
+      const aBSP = parseFloat(a.BSP_total) || 0;
+      const bBSP = parseFloat(b.BSP_total) || 0;
+      const aTotal = parseFloat(a.total) || 0;
+      const bTotal = parseFloat(b.total) || 0;
+      
+      if (aBSP !== bBSP) return bBSP - aBSP;
+      return bTotal - aTotal;
     });
 
-    sortedUsers.forEach((user, index) => {
-      const attackLink = createAttackLink(user.id, user.status);
-      const newRow = createTableRow(user, user.status, attackLink, index);
-      tableBody.innerHTML += newRow;
-    });
+    renderLayout(sortedUsers); // Using renderLayout instead of direct row creation
 
     hideNoDataMessage();
     displayDataTable();
@@ -156,7 +150,10 @@ function formatStatus(status) {
     const minutes = Math.floor(remaining / 60);
     const seconds = Math.floor(remaining % 60);
     formattedStatus = `Hospitalized (${minutes}m ${seconds}s)`;
-  }
+  } 
+  else if (formattedStatus === "Abroad" || formattedStatus === "Traveling") {
+    formattedStatus = status.description || formattedStatus; // Fallback to state if description is missing
+  }																								   
   return formattedStatus;
 }
 
@@ -197,6 +194,48 @@ function hideDataTable() {
   dataTable.classList.add("hidden");
 }
 
+function AddComma(num){ 
+    while (/(\d+)(\d{3})/.test(num.toString())){
+        num = num.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+    }
+    return num;
+}
+function FormatBattleStats(number) {
+    //number = 10000000000
+    var localized = AddComma(number)
+    var myArray = localized.split(",");
+    if (myArray.length < 1) {
+        return 'ERROR';
+    }
+
+    var toReturn = myArray[0];
+    if (number < 1000) return number;
+    if (parseInt(toReturn) < 10) {
+        if (parseInt(myArray[1][0]) != 0) {
+            toReturn += '.' + myArray[1][0];
+        }
+    }
+    switch (myArray.length) {
+        case 2:
+            toReturn += "K";
+            break;
+        case 3:
+            toReturn += "M";
+            break;
+        case 4:
+            toReturn += "B";
+            break;
+        case 5:
+            toReturn += "T";
+            break;
+        case 6:
+            toReturn += "Q";
+            break;
+    }
+    //Logger.log(toReturn)
+    return toReturn;
+}
+
 function createAttackLink(id, status) {
   const isDisabled = status !== "Okay";
   const disabledClass = isDisabled ? "cursor-not-allowed opacity-30 hover:bg-white" : "hover:bg-gray-50";
@@ -211,6 +250,30 @@ function populateAPIKey() {
   if (apiKey) {
     document.getElementById("api-key").value = apiKey;
   }
+}
+
+function createCard(row, status, attackLink) {
+  return `
+    <div class="card mb-4 border border-gray-200 p-4 rounded-lg shadow-sm">
+      <div class="text-sm sm:hidden">
+        <div class="font-medium text-gray-900 dark:text-gray-300">
+          <a href="https://www.torn.com/profiles.php?XID=${row.id}" target="_blank">
+            ${row.name}
+            <span class="ml-1 text-blue-600">[${row.id}]</span>
+          </a>
+        </div>
+        <div class="mt-1 flex flex-col text-gray-500 dark:text-gray-300">
+          <span>Level: ${row.lvl}</span>
+          <span class="bsp-total">BSP Total: ${AddComma(row.BSP_total)} - (${FormatBattleStats(row.BSP_total)})</span>
+          <span class="total">Total: ${row.total}</span>
+          <span>Status: ${row.status}</span>
+        </div>
+        <div class="mt-2 text-sm text-center">
+          ${attackLink}
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 function createTableRow(row, status, attackLink, index) {
@@ -228,25 +291,58 @@ function createTableRow(row, status, attackLink, index) {
         </div>
         <div class="mt-1 flex flex-col text-gray-500 dark:text-gray-300 sm:block lg:hidden">
             <span>Level: ${row.lvl}</span>
-            <span>Total: ${row.total}</span>
+            <span>Total: ${AddComma(row.BSP_total)} - (${FormatBattleStats(row.BSP_total)})</span>
         </div>
       </td>
       <td class="hidden px-3 py-3.5 text-sm text-gray-500 dark:text-gray-300 lg:table-cell min-w-0 ${borderClass}">${row.lvl}</td>
-      <td class="hidden px-3 py-3.5 text-sm text-gray-500 dark:text-gray-300 lg:table-cell min-w-0 ${borderClass}">${row.total}</td>
+      <td class="hidden px-3 py-3.5 text-sm text-gray-500 dark:text-gray-300 lg:table-cell min-w-0 ${borderClass}">${AddComma(row.BSP_total)} - (${FormatBattleStats(row.BSP_total)})</td>
       <td class="hidden px-3 py-3.5 text-sm text-gray-500 dark:text-gray-300 lg:table-cell min-w-0 ${borderClass}">${row.str}</td>
       <td class="hidden px-3 py-3.5 text-sm text-gray-500 dark:text-gray-300 lg:table-cell min-w-0 ${borderClass}">${row.def}</td>
       <td class="hidden px-3 py-3.5 text-sm text-gray-500 dark:text-gray-300 lg:table-cell min-w-0 ${borderClass}">${row.spd}</td>
       <td class="hidden px-3 py-3.5 text-sm text-gray-500 dark:text-gray-300 lg:table-cell min-w-0 ${borderClass}">${row.dex}</td>
-      <td class="px-3 py-3.5 text-sm text-gray-500 dark:text-gray-300 min-w-0 ${borderClass}">
-        <div class="sm:hidden w-40">${status}</div>
-        <div class="hidden sm:block w-40">${status}</div>
-      </td>
+      <td class="hidden px-3 py-3.5 text-sm text-gray-500 dark:text-gray-300 lg:table-cell min-w-0 ${borderClass}">${row.status}</td>
       <td class="relative py-3.5 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 min-w-0 ${borderClass}">
         ${attackLink}
       </td>
     </tr>
   `;
 }
+
+// Function to render the appropriate layout based on screen size
+function renderLayout(rowsData) {
+  const tableBody = document.getElementById('table-body');
+  tableBody.innerHTML = '';
+
+  // Remove any existing cards container if necessary
+  const oldCardsContainer = document.getElementById('cards-container');
+  if (oldCardsContainer) {
+    oldCardsContainer.remove();
+  }
+
+  const isSmallScreen = window.matchMedia('(max-width: 640px)').matches;
+
+  if (isSmallScreen) {
+    const cardsContainer = document.createElement('div');
+    cardsContainer.id = 'cards-container';
+    document.getElementById('data-table').prepend(cardsContainer);
+
+    rowsData.forEach((row, index) => {
+      console.log('Card row data:', row); // ADD THIS LINE
+      const status = formatStatus(row.status); // Using formatStatus function
+      const attackLink = createAttackLink(row.id, row.status); // Using createAttackLink function
+      cardsContainer.innerHTML += createCard(row, status, attackLink);
+    });
+  } else {
+    rowsData.forEach((row, index) => {
+      console.log('Table row data:', row); // ADD THIS LINE
+      const status = formatStatus(row.status); // Using formatStatus function
+      const attackLink = createAttackLink(row.id, row.status); // Using createAttackLink function
+      tableBody.innerHTML += createTableRow(row, status, attackLink, index);
+    });
+  }
+}
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   populateAPIKey();
