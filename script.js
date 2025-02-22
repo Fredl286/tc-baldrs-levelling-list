@@ -66,7 +66,16 @@ async function fetchData() {
 
     const usersWithStatus = await Promise.all(userPromises);
 
-    const sortedUsers = usersWithStatus.sort((a, b) => b.total - a.total);
+    const sortedUsers = usersWithStatus.sort((a, b) => {
+      if (a.status === "Okay" && b.status !== "Okay") return -1;
+      if (a.status !== "Okay" && b.status === "Okay") return 1;
+      if (a.status === "Okay" && b.status === "Okay") return 0;
+
+      const aRemaining = parseHospitalTime(a.status);
+      const bRemaining = parseHospitalTime(b.status);
+
+      return aRemaining - bRemaining;
+    });
 
     sortedUsers.forEach((user, index) => {
       const attackLink = createAttackLink(user.id, user.status);
