@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html
+  lang="en"
+  x-data="{ darkMode: localStorage.getItem('dark') === 'true' }"
+  x-init="$watch('darkMode', val => localStorage.setItem('dark', val)); darkMode = darkMode"
+  x-bind:class="{'dark': darkMode}"
+>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nightwatch War Targets</title>
+    <title>Baldr's Levelling List</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <style>
       @keyframes spin {
         from {
           transform: rotate(0deg);
         }
+
         to {
           transform: rotate(360deg);
         }
       }
+
       .spin {
         animation: spin 1s linear infinite;
       }
@@ -25,8 +32,9 @@
     ></script>
     <script src="script.js?v=1.36"></script>
   </head>
+
   <body
-    class="bg-gray-900 font-sans leading-normal text-gray-200 overflow-x-hidden"
+    class="bg-gray-50 dark:bg-gray-900 font-sans leading-normal text-gray-800 dark:text-gray-200 overflow-x-hidden"
   >
     <div class="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full">
       <div class="relative h-full max-w-7xl w-full mx-auto">
@@ -51,7 +59,7 @@
                 y="0"
                 width="4"
                 height="4"
-                class="text-gray-800"
+                class="text-gray-200 dark:text-gray-800"
                 fill="currentColor"
               ></rect>
             </pattern>
@@ -79,7 +87,7 @@
                 y="0"
                 width="4"
                 height="4"
-                class="text-gray-800"
+                class="text-gray-200 dark:text-gray-800"
                 fill="currentColor"
               ></rect>
             </pattern>
@@ -91,16 +99,31 @@
     <div class="relative flex flex-col min-h-screen py-12 px-2 sm:px-6 lg:px-8">
       <div class="flex items-center justify-center">
         <div class="flex flex-col justify-around">
-          <div class="space-y-6 text-center text-gray-300">
+          <div class="space-y-6 text-center text-gray-600 dark:text-gray-300">
             <h1
-              class="sm:pt-16 text-4xl font-extrabold tracking-wider text-gray-200"
+              class="sm:pt-16 text-4xl font-extrabold tracking-wider text-gray-700 dark:text-gray-200"
             >
-              Nightwatch War Targets
+              Baldr's Levelling Targets
             </h1>
             <h3 class="text-base font-medium tracking-wider">
               <div class="max-w-2xl mx-auto">
                 <p>
-                  This list features timers for current war targets.
+                  This list features inactive, low-stat players, ideal for
+                  leveling up. Focus on
+                  <span class="font-extrabold text-blue-600">beating</span>
+                  and
+                  <span class="font-extrabold text-blue-600">leaving</span> them
+                  in the street for maximum experience gains. Experience is
+                  based on the target's level, not their stats.
+                  <span class="font-sans text-blue-300">
+                    <a
+                      class="font-extrabold text-blue-400 hover:text-blue-300"
+                      href="https://tc-essentials.oran.pw/docs/prologue/level15"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Continue reading</a
+                    ></span
+                  >
                 </p>
               </div>
             </h3>
@@ -114,24 +137,24 @@
                     type="text"
                     name="api-key"
                     id="api-key"
-                    class="peer relative col-start-1 row-start-1 border-0 bg-transparent text-gray-300 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 w-72 h-10 px-4 py-2"
+                    class="peer relative col-start-1 row-start-1 border-0 bg-transparent text-gray-900 dark:text-gray-300 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 w-72 h-10 px-4 py-2"
                     placeholder="API key"
                     autocomplete="off"
                   />
                   <div
-                    class="col-start-1 col-end-3 row-start-1 rounded-md shadow-sm ring-1 ring-inset ring-gray-800 peer-focus:ring-2 peer-focus:ring-blue-600"
+                    class="col-start-1 col-end-3 row-start-1 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 peer-focus:ring-2 peer-focus:ring-blue-600"
                     aria-hidden="true"
                   ></div>
                   <div class="col-start-2 row-start-1 flex items-center">
                     <span
-                      class="h-4 w-px flex-none bg-gray-800"
+                      class="h-4 w-px flex-none bg-gray-200"
                       aria-hidden="true"
                     ></span>
                     <label for="list-select" class="sr-only">List select</label>
                     <select
                       id="list-select"
                       name="list-select"
-                      class="rounded-md border-0 bg-gray-900 py-1.5 pl-4 mr-1 pr-7 text-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      class="rounded-md border-0 bg-transparent dark:bg-gray-900 py-1.5 pl-4 mr-1 pr-7 text-gray-900 dark:text-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     ></select>
                   </div>
                 </div>
@@ -148,7 +171,7 @@
               </form>
             </div>
             <div
-              class="flex flex-col items-center space-y-4 text-gray-400"
+              class="flex flex-col items-center space-y-4 dark:text-gray-400"
             >
               <p
                 id="api-message"
@@ -176,20 +199,128 @@
                 class="py-4 px-4 sm:px-6 lg:px-8 text-left hidden"
               >
                 <div
-                  class="-mx-4 mt-10 ring-1 ring-gray-800 sm:mx-0 sm:rounded-lg"
+                  class="-mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg"
                 >
                   <div class="table-container overflow-x-auto w-full">
                     <table
-                      class="table-fixed max-w-full min-w-full divide-y divide-gray-800"
+                      class="table-fixed max-w-full min-w-full divide-y divide-gray-300"
                     >
-                      <!-- Table content -->
+                      <thead>
+                        <tr>
+                          <th
+                            scope="col"
+                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 sm:pl-6"
+                          >
+                            Player
+                          </th>
+                          <th
+                            scope="col"
+                            class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 lg:table-cell"
+                          >
+                            Level
+                          </th>
+                          <th
+                            scope="col"
+                            class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 lg:table-cell"
+                          >
+                            Total
+                          </th>
+                          <th
+                            scope="col"
+                            class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 lg:table-cell"
+                          >
+                            Strength
+                          </th>
+                          <th
+                            scope="col"
+                            class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 lg:table-cell"
+                          >
+                            Defense
+                          </th>
+                          <th
+                            scope="col"
+                            class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 lg:table-cell"
+                          >
+                            Speed
+                          </th>
+                          <th
+                            scope="col"
+                            class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 lg:table-cell"
+                          >
+                            Dexterity
+                          </th>
+                          <th
+                            scope="col"
+                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300"
+                          >
+                            Status
+                          </th>
+                          <th
+                            scope="col"
+                            class="relative py-3.5 pl-3 pr-4 sm:pr-6"
+                          >
+                            <span class="sr-only">Attack</span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody id="table-body"></tbody>
                     </table>
+                    <p
+                      id="no-data-message"
+                      class="hidden px-3 py-3.5 text-sm text-gray-400 border-t border-gray-200"
+                    >
+                      No data available.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="footer mt-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-sm font-medium tracking-wider max-w-2xl mx-auto">
+          The List is created and actively maintained by
+          <a
+            href="https://www.torn.com/profiles.php?XID=1847600"
+            class="font-extrabold text-blue-400 hover:text-blue-300"
+            >Baldr [1847600]</a
+          >, the code was crafted with love and fueled by countless cups of
+          coffee, courtesy of
+          <a
+            href="https://www.torn.com/profiles.php?XID=1778676"
+            class="font-extrabold text-blue-400 hover:text-blue-300"
+            >oraN [1778676]</a
+          >
+          and
+          <a
+            href="https://www.torn.com/profiles.php?XID=2914212"
+            class="font-extrabold text-blue-400 hover:text-blue-300"
+            >Lefu [2914212]</a
+          >
+          with contributions from
+          <a
+            href="https://www.torn.com/profiles.php?XID=2944599"
+            class="font-extrabold text-blue-400 hover:text-blue-300"
+            >Herohtar [2944599]</a
+          >.
+        </p>
+        <p class="py-8 text-sm font-medium tracking-wider max-w-2xl mx-auto">
+          You can find this project's source code on
+          <a
+            href="https://github.com/oranweb/tc-baldrs-levelling-list"
+            target="_blank"
+            class="text-blue-400 hover:text-blue-300"
+            >GitHub</a
+          >. Your feedback is appreciated -
+          <a
+            href="https://www.torn.com/forums.php#/p=threads&f=67&t=16328038"
+            target="_blank"
+            class="text-blue-400 hover:text-blue-300"
+            >please feel free to leave your comments</a
+          >.
+        </p>
       </div>
     </div>
   </body>
