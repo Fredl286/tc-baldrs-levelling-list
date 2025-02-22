@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ darkMode: true }" x-init="localStorage.setItem('dark', true)" x-bind:class="{'dark': darkMode}">
+<html lang="en" x-data="{ darkMode: true }" x-init="$watch('darkMode', val => { localStorage.setItem('dark', val); document.documentElement.classList.toggle('dark', val); })" x-bind:class="{'dark': darkMode}">
 
 <head>
     <meta charset="UTF-8" />
@@ -23,6 +23,13 @@
         }
 		 
 </style>
+
+<script>
+    if (localStorage.getItem('dark') === 'true' || localStorage.getItem('dark') === null) {
+        document.documentElement.classList.add('dark'); // Force dark mode on page load
+        localStorage.setItem('dark', 'true'); // Ensure it stays enabled
+    }
+</script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"></script>
     <script src="script.js?v=1.36"></script>
 </head>
